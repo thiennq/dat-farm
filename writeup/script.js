@@ -223,9 +223,12 @@ function makeSectionsCollapsible(viewer) {
             // Insert container after H2
             child.parentNode.insertBefore(currentContainer, child.nextSibling);
             
+            // Capture container reference in block scope to fix closure bug
+            const targetContainer = currentContainer;
+            
             // Click to toggle collapse
             child.addEventListener('click', () => {
-                const isOpen = currentContainer.classList.toggle('open');
+                const isOpen = targetContainer.classList.toggle('open');
                 child.querySelector('.collapse-toggle-icon').innerText = isOpen ? '▾' : '▸';
                 child.classList.toggle('collapsed', !isOpen);
             });
