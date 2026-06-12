@@ -61,8 +61,8 @@ function createTreeDOM(nodes, container) {
         rowEl.className = 'tree-row';
         
         const arrowSpan = document.createElement('span');
-        arrowSpan.className = 'arrow-icon';
-        arrowSpan.innerHTML = node.type === 'directory' ? '▸' : '';
+        arrowSpan.className = 'arrow-icon' + (node.type === 'directory' ? ' open' : '');
+        arrowSpan.innerHTML = node.type === 'directory' ? '▾' : '';
         rowEl.appendChild(arrowSpan);
 
         const iconSpan = document.createElement('span');
@@ -79,7 +79,7 @@ function createTreeDOM(nodes, container) {
 
         if (node.type === 'directory') {
             const childrenContainer = document.createElement('div');
-            childrenContainer.className = 'tree-children';
+            childrenContainer.className = 'tree-children open';
             
             if (node.children && node.children.length > 0) {
                 createTreeDOM(node.children, childrenContainer);
