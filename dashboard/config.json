@@ -1,0 +1,21 @@
+{
+  "chatlog": "md/conversations.md",
+  "walkthroughs": [
+    {
+      "name": "Walkthrough 01 \u2014 Setup Project & Sourcing Assets",
+      "path": "md/walkthroughs/01.md"
+    },
+    {
+      "name": "Walkthrough 02 \u2014 Add Farm Animals & Animations",
+      "path": "md/walkthroughs/02.md"
+    },
+    {
+      "name": "Walkthrough 03 \u2014 Create Writeup Dashboard & Optimize Chatlog",
+      "path": "md/walkthroughs/03.md"
+    },
+    {
+      "name": "Walkthrough 04 \u2014 Generalize Writeup Dashboard",
+      "path": "md/walkthroughs/04.md"
+    }
+  ]
+}

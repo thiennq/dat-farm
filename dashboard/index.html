@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌾 Dat Farm — Unified Walkthrough & Chatlog Dashboard</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Press+Start+2P&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Marked Markdown Parser & Prism CSS/JS for Syntax Highlighting -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-theme">
+    <header class="app-header">
+        <div class="header-logo">
+            <span class="logo-icon">🌾</span>
+            <div class="logo-text">
+                <h1>Dat Farm</h1>
+                <span class="logo-sub">Unified Developer Log Dashboard</span>
+            </div>
+        </div>
+        <div class="header-actions">
+            <button id="toggle-layout-btn" class="btn" title="Chuyển chế độ xem">
+                <span class="btn-icon">👁️</span> Chế độ xem
+            </button>
+            <a href="/index.html" class="btn btn-secondary">🌾 Vào Game</a>
+        </div>
+    </header>
+
+    <main class="app-container">
+        <!-- Sidebar: Danh sách Walkthroughs -->
+        <aside class="app-sidebar">
+            <div class="sidebar-header">
+                <h3>Nhật ký Giai đoạn</h3>
+            </div>
+            <nav id="walkthrough-nav" class="sidebar-menu">
+                <div class="loader-spinner">Đang tải cấu hình...</div>
+            </nav>
+        </aside>
+
+        <!-- Panel chính hiển thị song song -->
+        <section class="app-viewport split-view" id="viewport-container">
+            <!-- Cột trái: Walkthrough -->
+            <div class="viewport-column" id="walkthrough-column">
+                <div class="column-header">
+                    <h2>📋 Tóm tắt Giai đoạn (Walkthrough)</h2>
+                    <span class="badge">Walkthrough</span>
+                </div>
+                <div class="column-content markdown-body" id="walkthrough-viewer">
+                    <div class="placeholder-message">
+                        <h3>Chọn một Walkthrough từ sidebar</h3>
+                        <p>Nhấn vào danh sách giai đoạn ở thanh bên để bắt đầu theo dõi tiến độ dự án.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cột phải: Chat Log -->
+            <div class="viewport-column" id="chatlog-column">
+                <div class="column-header">
+                    <h2>💬 Hội thoại AI chi tiết (Chat Log)</h2>
+                    <span class="badge badge-accent">Hybrid Log</span>
+                </div>
+                <div class="column-content markdown-body" id="chatlog-viewer">
+                    <div class="loader-spinner">Đang tải lịch sử hội thoại...</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Slide-out Drawer: Chi tiết cuộc hội thoại -->
+    <div id="detail-drawer" class="detail-drawer">
+        <div class="drawer-overlay"></div>
+        <div class="drawer-panel">
+            <div class="drawer-header">
+                <h3>💬 Chi tiết cuộc hội thoại <span id="drawer-q-id">#q0</span></h3>
+                <button id="close-drawer-btn" class="close-btn" title="Đóng">&times;</button>
+            </div>
+            <div class="drawer-content markdown-body" id="drawer-content-viewer">
+                <!-- Nội dung cuộc hội thoại sẽ được clone vào đây -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom JS -->
+    <script src="script.js"></script>
+</body>
+</html>
