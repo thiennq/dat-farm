@@ -11,28 +11,24 @@
 ##### 🛠️ Action
 - Call tool `view_file` File: `/Users/thiennq/.gemini/config/plugins/local.personal.ag-simple-task/skills/create-task/SKILL.md`
 - Call tool `list_dir` {DirectoryPath: `farm`}
-- Call tool `ask_question` : 
-
-  Câu hỏi 1: Công nghệ/Framework nào bạn muốn sử dụng cho demo animation pixel này?
-    A. (Recommended) Vite + Vanilla JS & HTML5 Canvas (nhẹ, dễ kiểm soát animation, không cần cài nhiều lib)
-    B. Vite + Phaser JS (Game engine chuyên nghiệp cho game 2D)
-    C. HTML/JS thuần (Single page không cần bundler/Vite)
-
-  Câu hỏi 2 (Multiple): Những hoạt cảnh (animations) nào bạn muốn có trong bản demo nông trại? (Chọn các options áp dụng)
-    A. Nhân vật đi lại (Walking/Idle animations)
-    B. Cây trồng lớn dần qua các giai đoạn (Crop growth animations)
-    C. Thú nuôi di chuyển/ăn cỏ (Farm animals/pets idle & walk)
-    D. Hiệu ứng thời tiết/ngày đêm (Weather: rain/wind, Day/Night cycle transitions)
-    E. Tương tác click chuột cơ bản (Tưới nước, cuốc đất để xem hiệu ứng)
-
-  Câu hỏi 3: Bạn muốn lấy tài nguyên (Pixel Art assets - spritesheets, tilesets) từ nguồn nào?
-    A. (Recommended) Tự động tìm kiếm và tải/sử dụng các bộ asset nông trại pixel free (như trên itch.io, GitHub public assets)
-    B. Sử dụng asset được vẽ bằng CSS/Canvas thuần/SVG (không cần load file ảnh bên ngoài)
-    C. Sử dụng AI `generate_image` để tự tạo các texture/sprite sheet pixel art độc quyền
-
-  Câu hỏi 4: Bạn muốn cấu trúc dự án và lưu file ở đâu trong workspace?
-    A. Khởi tạo một dự án Vite mới trực tiếp trong thư mục `farm`
-    B. Tạo một folder con bên trong `farm` (ví dụ `farm/pixel-demo`)
+- Call tool `ask_question` :
+  - **Câu hỏi 1**: Công nghệ/Framework nào bạn muốn sử dụng cho demo animation pixel này?
+    - **A.** (Recommended) Vite + Vanilla JS & HTML5 Canvas (nhẹ, dễ kiểm soát animation, không cần cài nhiều lib)
+    - **B.** Vite + Phaser JS (Game engine chuyên nghiệp cho game 2D)
+    - **C.** HTML/JS thuần (Single page không cần bundler/Vite)
+  - **Câu hỏi 2 (Multiple)**: Những hoạt cảnh (animations) nào bạn muốn có trong bản demo nông trại? (Chọn các options áp dụng)
+    - **A.** Nhân vật đi lại (Walking/Idle animations)
+    - **B.** Cây trồng lớn dần qua các giai đoạn (Crop growth animations)
+    - **C.** Thú nuôi di chuyển/ăn cỏ (Farm animals/pets idle & walk)
+    - **D.** Hiệu ứng thời tiết/ngày đêm (Weather: rain/wind, Day/Night cycle transitions)
+    - **E.** Tương tác click chuột cơ bản (Tưới nước, cuốc đất để xem hiệu ứng)
+  - **Câu hỏi 3**: Bạn muốn lấy tài nguyên (Pixel Art assets - spritesheets, tilesets) từ nguồn nào?
+    - **A.** (Recommended) Tự động tìm kiếm và tải/sử dụng các bộ asset nông trại pixel free (như trên itch.io, GitHub public assets)
+    - **B.** Sử dụng asset được vẽ bằng CSS/Canvas thuần/SVG (không cần load file ảnh bên ngoài)
+    - **C.** Sử dụng AI `generate_image` để tự tạo các texture/sprite sheet pixel art độc quyền
+  - **Câu hỏi 4**: Bạn muốn cấu trúc dự án và lưu file ở đâu trong workspace?
+    - **A.** Khởi tạo một dự án Vite mới trực tiếp trong thư mục `farm`
+    - **B.** Tạo một folder con bên trong `farm` (ví dụ `farm/pixel-demo`)
 - Call tool `search_web` {query: `\"stardew valley\" free pixel art assets github site:github.com`, toolSummary: `Search free pixel art assets`}
 - Call tool `search_web` {query: `\"Sprout Lands\" github site:github.com`, toolSummary: `Search Sprout Lands GitHub`}
 - Call tool `search_web` {query: `\"perquis/sprout_lands\" github assets folder structure`, toolSummary: `Search sprout_lands repo structure`}
