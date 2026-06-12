@@ -1,0 +1,277 @@
+:root {
+  --bg-color: #111812;
+  --panel-bg: rgba(28, 40, 32, 0.85);
+  --panel-border: rgba(243, 198, 120, 0.35);
+  --accent-color: #f3c678;
+  --accent-hover: #ffd996;
+  --text-main: #e2e8f0;
+  --text-muted: #94a3b8;
+  --success-color: #4ade80;
+  --font-pixel: 'Press Start 2P', monospace;
+  --font-ui: 'Outfit', sans-serif;
+  --shadow-lg: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.5);
+  --border-radius-lg: 16px;
+  --border-radius-md: 8px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-color);
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(20, 80, 45, 0.2) 0px, transparent 50%),
+    radial-gradient(at 50% 0%, rgba(243, 198, 120, 0.05) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(20, 60, 80, 0.15) 0px, transparent 50%);
+  color: var(--text-main);
+  font-family: var(--font-ui);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-x: hidden;
+  padding: 20px;
+}
+
+.app-container {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Header */
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.logo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.logo-main {
+  font-family: var(--font-pixel);
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--accent-color);
+  text-shadow: 2px 2px 0px #3c2400;
+  letter-spacing: 1px;
+}
+
+.logo-sub {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.badge {
+  background: rgba(243, 198, 120, 0.1);
+  color: var(--accent-color);
+  border: 1px solid var(--panel-border);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* Main Layout */
+.game-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 24px;
+}
+
+@media (max-width: 900px) {
+  .game-wrapper {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Game Card */
+.game-card {
+  background: var(--panel-bg);
+  backdrop-filter: blur(8px);
+  border: 2px solid var(--panel-border);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.game-card-header {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.window-controls {
+  display: flex;
+  gap: 6px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.dot.red { background-color: #ef4444; }
+.dot.yellow { background-color: #eab308; }
+.dot.green { background-color: #22c55e; }
+
+.game-title {
+  font-family: var(--font-pixel);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+}
+
+/* Game Container - Phaser Target */
+#game-container {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+#game-container canvas {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.game-card-footer {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 12px 20px;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.status-active {
+  color: var(--success-color);
+  font-weight: 600;
+}
+
+/* Control Panel / Sidebar */
+.control-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.panel-section {
+  background: var(--panel-bg);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: var(--border-radius-lg);
+  padding: 20px;
+  box-shadow: var(--shadow-lg);
+}
+
+.panel-section h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--accent-color);
+  letter-spacing: 0.5px;
+}
+
+.section-desc {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+  line-height: 1.4;
+}
+
+.controls-guide {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.key-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.key-cap {
+  background: linear-gradient(180deg, #2a3a30 0%, #152219 100%);
+  border: 1px solid rgba(243, 198, 120, 0.4);
+  border-bottom: 3px solid rgba(243, 198, 120, 0.6);
+  color: var(--accent-color);
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-family: var(--font-pixel);
+  font-size: 0.7rem;
+  min-width: 28px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.key-desc {
+  font-size: 0.9rem;
+  color: var(--text-main);
+  margin-left: auto;
+}
+
+/* Project Info Table */
+.project-info-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.project-info-table td {
+  padding: 8px 0;
+  font-size: 0.9rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.project-info-table tr:last-child td {
+  border-bottom: none;
+}
+
+.project-info-table td:first-child {
+  color: var(--text-muted);
+  font-weight: 500;
+  width: 100px;
+}
+
+.project-info-table td:last-child {
+  color: var(--accent-color);
+  font-weight: 600;
+  text-align: right;
+}
+
+/* Footer */
+.app-footer {
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  padding: 10px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
