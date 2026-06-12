@@ -274,6 +274,8 @@ body {
     border-radius: 12px;
     overflow-x: auto;
     margin-bottom: 24px;
+    white-space: pre-wrap;
+    word-break: break-word;
 }
 
 .markdown-body pre code {
