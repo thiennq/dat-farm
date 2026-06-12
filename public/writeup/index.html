@@ -13,8 +13,11 @@
 </head>
 <body>
   <div class="app-container">
+    <!-- Sidebar Overlay for Mobile -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
     <!-- Sidebar -->
-    <aside class="sidebar">
+    <aside class="sidebar" id="sidebar">
       <div class="sidebar-header">
         <div class="sidebar-logo">
           <span>🌾 Dat Farm</span>
@@ -29,6 +32,7 @@
     <!-- Main Content Panel -->
     <main class="main-content">
       <div class="top-bar">
+        <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Sidebar">☰</button>
         <div class="current-path" id="active-path">Select a file from the tree</div>
         <div class="badge" id="file-type-badge">Doc</div>
       </div>
