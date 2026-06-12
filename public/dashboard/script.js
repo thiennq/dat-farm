@@ -9,6 +9,14 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentWalkthroughPath = null;
     let isSplitView = true;
 
+    // Helper tạo URL chống cache
+    function getCacheBustedUrl(url) {
+        const date = new Date();
+        const pad = (num) => String(num).padStart(2, '0');
+        const timestamp = `${date.getFullYear()}${pad(date.getMonth() + 1)}${pad(date.getDate())}-${pad(date.getHours())}${pad(date.getMinutes())}`;
+        return `${url}?t=${timestamp}`;
+    }
+
     // Cấu hình marked để render markdown chuẩn
     marked.setOptions({
         highlight: function(code, lang) {
@@ -22,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // 1. Tải file cấu hình config.json
-    fetch('config.json')
+    fetch(getCacheBustedUrl('config.json'))
         .then(res => {
             if (!res.ok) throw new Error('Không thể tải file config.json');
             return res.json();
@@ -75,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
         currentWalkthroughPath = path;
         walkthroughViewer.innerHTML = '<div class="loader-spinner">Đang tải walkthrough...</div>';
         
-        fetch(path)
+        fetch(getCacheBustedUrl(path))
             .then(res => {
                 if (!res.ok) throw new Error('Không thể tải file walkthrough');
                 return res.text();
@@ -123,7 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function loadChatlog(path) {
         chatlogViewer.innerHTML = '<div class="loader-spinner">Đang tải chat log...</div>';
         
-        fetch(path)
+        fetch(getCacheBustedUrl(path))
             .then(res => {
                 if (!res.ok) throw new Error('Không thể tải file chatlog');
                 return res.text();

@@ -180,7 +180,10 @@ class WriteupDashboard {
         pathLabel.innerText = fileNode.path;
 
         try {
-            const response = await fetch(fileNode.path);
+            const date = new Date();
+            const pad = (num) => String(num).padStart(2, '0');
+            const timestamp = `${date.getFullYear()}${pad(date.getMonth() + 1)}${pad(date.getDate())}-${pad(date.getHours())}${pad(date.getMinutes())}`;
+            const response = await fetch(`${fileNode.path}?t=${timestamp}`);
             if (!response.ok) {
                 throw new Error(`Failed to load ${fileNode.name}`);
             }
