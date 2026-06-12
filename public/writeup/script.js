@@ -221,7 +221,8 @@ async function loadFileContent(fileNode) {
                     const targetEl = document.getElementById(targetId);
                     if (targetEl) {
                         const viewerPane = document.getElementById('viewer-pane');
-                        const topOffset = targetEl.offsetTop - 24;
+                        const relativeTop = targetEl.getBoundingClientRect().top - viewerPane.getBoundingClientRect().top + viewerPane.scrollTop;
+                        const topOffset = relativeTop - 20; // 20px padding from the top edge
                         viewerPane.scrollTo({
                             top: topOffset,
                             behavior: 'smooth'
@@ -335,6 +336,22 @@ function setupScrollspy(questions) {
         viewerPane.removeEventListener('scroll', activeScrollspyListener);
     }
     
+    // Helper to get offsets relative to the scroll container
+    const getOffsets = () => {
+        return questions.map(header => ({
+            id: header.id,
+            top: header.getBoundingClientRect().top - viewerPane.getBoundingClientRect().top + viewerPane.scrollTop
+        }));
+    };
+    
+    // Pre-calculate offsets
+    let questionOffsets = getOffsets();
+    
+    // Recalculate on window resize to ensure correctness
+    window.addEventListener('resize', () => {
+        questionOffsets = getOffsets();
+    });
+    
     activeScrollspyListener = () => {
         const scrollTop = viewerPane.scrollTop;
         let currentQId = null;
@@ -348,11 +365,11 @@ function setupScrollspy(questions) {
             return;
         }
         
-        const scrollPos = scrollTop + 60; // offset for detection
-        for (let i = 0; i < questions.length; i++) {
-            const header = questions[i];
-            if (scrollPos >= header.offsetTop) {
-                currentQId = header.id;
+        const scrollPos = scrollTop + 30; // offset for detection
+        for (let i = 0; i < questionOffsets.length; i++) {
+            const item = questionOffsets[i];
+            if (scrollPos >= item.top) {
+                currentQId = item.id;
             } else {
                 break;
             }
