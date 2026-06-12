@@ -1,0 +1,58 @@
+{
+  "title": "Dat Farm",
+  "subtitle": "Project logs & tasks",
+  "logo": "🌾",
+  "collapsibleFile": "chatlog.md",
+  "defaultExpanded": true,
+  "theme": {
+    "accent": "#10b981",
+    "accent-hover": "#34d399",
+    "bg-primary": "#0f172a",
+    "bg-secondary": "#1e293b",
+    "bg-tertiary": "#0b0f19"
+  },
+  "fileTree": [
+    {
+      "name": "chatlog.md",
+      "type": "file",
+      "path": "md/chatlog.md"
+    },
+    {
+      "name": "tasks",
+      "type": "directory",
+      "children": [
+        {
+          "name": "backlog",
+          "type": "directory",
+          "children": []
+        },
+        {
+          "name": "done",
+          "type": "directory",
+          "children": [
+            {
+              "name": "2026-06-12-generalize-writeup-dashboard.md",
+              "type": "file",
+              "path": "md/tasks/done/2026-06-12-generalize-writeup-dashboard.md"
+            },
+            {
+              "name": "2026-06-12-01-setup-project-and-assets.md",
+              "type": "file",
+              "path": "md/tasks/done/2026-06-12-01-setup-project-and-assets.md"
+            },
+            {
+              "name": "2026-06-12-02-create-tilemap-and-player.md",
+              "type": "file",
+              "path": "md/tasks/done/2026-06-12-02-create-tilemap-and-player.md"
+            },
+            {
+              "name": "2026-06-12-03-add-farm-animals-animations.md",
+              "type": "file",
+              "path": "md/tasks/done/2026-06-12-03-add-farm-animals-animations.md"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

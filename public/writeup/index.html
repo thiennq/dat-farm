@@ -52,5 +52,13 @@
   </div>
 
   <script src="script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const dashboard = new WriteupDashboard({
+        configPath: 'config.json'
+      });
+      dashboard.init();
+    });
+  </script>
 </body>
 </html>
