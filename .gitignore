@@ -26,4 +26,3 @@ dist-ssr
 # Project specific
 .gemini/
 scratch/pydew_temp/
-/scripts/
