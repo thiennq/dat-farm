@@ -211,34 +211,35 @@ function makeSectionsCollapsible(viewer) {
     let currentContainer = null;
     
     children.forEach(child => {
-        if (child.tagName === 'H2' && child.innerText.includes('Antigravity')) {
-            // Style the header as collapsible
-            child.classList.add('collapsible-header');
-            child.innerHTML = `<span class="collapse-toggle-icon">▾</span> ` + child.innerHTML;
-            
-            // Create container for section contents
-            currentContainer = document.createElement('div');
-            currentContainer.className = 'collapsible-section open';
-            
-            // Insert container after H2
-            child.parentNode.insertBefore(currentContainer, child.nextSibling);
-            
-            // Capture container reference in block scope to fix closure bug
-            const targetContainer = currentContainer;
-            
-            // Click to toggle collapse
-            child.addEventListener('click', () => {
-                const isOpen = targetContainer.classList.toggle('open');
-                child.querySelector('.collapse-toggle-icon').innerText = isOpen ? '▾' : '▸';
-                child.classList.toggle('collapsed', !isOpen);
-            });
-        } else if (currentContainer && child.className !== 'collapsible-section') {
-            // Append following elements into container until another H2 is found
-            currentContainer.appendChild(child);
-        } else if (child.tagName === 'H2') {
-            // Stop grouping when another H2 (e.g. User) starts
+        if (child.tagName === 'H2') {
+            // Stop grouping if we hit any H2
             currentContainer = null;
+            
+            if (child.innerText.includes('Antigravity')) {
+                // Style the header as collapsible
+                child.classList.add('collapsible-header');
+                child.innerHTML = `<span class="collapse-toggle-icon">▾</span> ` + child.innerHTML;
+                
+                // Create container for section contents
+                currentContainer = document.createElement('div');
+                currentContainer.className = 'collapsible-section open';
+                
+                // Insert container after H2
+                child.parentNode.insertBefore(currentContainer, child.nextSibling);
+                
+                // Capture container reference in block scope to fix closure bug
+                const targetContainer = currentContainer;
+                
+                // Click to toggle collapse
+                child.addEventListener('click', () => {
+                    const isOpen = targetContainer.classList.toggle('open');
+                    child.querySelector('.collapse-toggle-icon').innerText = isOpen ? '▾' : '▸';
+                    child.classList.toggle('collapsed', !isOpen);
+                });
+            }
+        } else if (currentContainer && child.className !== 'collapsible-section') {
+            // Append following elements into container
+            currentContainer.appendChild(child);
         }
     });
 }
-
