@@ -18,9 +18,9 @@
       "path": "md/chatlog.md"
     },
     {
-      "name": "chatlog-v2.md",
+      "name": "chatlog-remote.md",
       "type": "file",
-      "path": "md/chatlog-v2.md"
+      "path": "md/chatlog-remote.md"
     },
     {
       "name": "tasks",
