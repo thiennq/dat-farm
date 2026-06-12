@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stardew Valley Farm Animation Demo</title>
+  <!-- SEO & Description -->
+  <meta name="description" content="Một bản demo nông trại pixel art sinh động lấy cảm hứng từ Stardew Valley sử dụng Phaser JS và Vite." />
+  <!-- Google Fonts for Outfit & Press Start 2P -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Press+Start+2P&display=swap" rel="stylesheet" />
+  <script type="module" crossorigin src="./assets/index-DbOGB-kL.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-Yz00iRMS.css">
+</head>
+<body>
+  <div class="app-container">
+    <header class="app-header">
+      <div class="logo">
+        <span class="pixel-text logo-main">STARDEW</span>
+        <span class="logo-sub">Valley Farm Demo</span>
+      </div>
+      <div class="badge">Phaser JS Engine</div>
+    </header>
+
+    <main class="game-wrapper">
+      <div class="game-card">
+        <div class="game-card-header">
+          <div class="window-controls">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+          </div>
+          <span class="game-title">FARM ANIMATION PLAYGROUND</span>
+        </div>
+        
+        <!-- Game Canvas Container -->
+        <div id="game-container"></div>
+        
+        <div class="game-card-footer">
+          <p>Trạng thái: <span id="status-text" class="status-active">Đang tải tài nguyên...</span></p>
+        </div>
+      </div>
+
+      <aside class="control-panel">
+        <div class="panel-section">
+          <h3>Bảng Điều Khiển</h3>
+          <p class="section-desc">Sử dụng bàn phím để tương tác với nhân vật và thế giới.</p>
+          <div class="controls-guide">
+            <div class="key-row">
+              <span class="key-cap">W</span> / <span class="key-cap">↑</span>
+              <span class="key-desc">Đi lên</span>
+            </div>
+            <div class="key-row">
+              <span class="key-cap">A</span> / <span class="key-cap">←</span>
+              <span class="key-desc">Sang trái</span>
+            </div>
+            <div class="key-row">
+              <span class="key-cap">S</span> / <span class="key-cap">↓</span>
+              <span class="key-desc">Đi xuống</span>
+            </div>
+            <div class="key-row">
+              <span class="key-cap">D</span> / <span class="key-cap">→</span>
+              <span class="key-desc">Sang phải</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel-section">
+          <h3>Thông Tin Dự Án</h3>
+          <table class="project-info-table">
+            <tr>
+              <td>Engine:</td>
+              <td>Phaser v3.80+</td>
+            </tr>
+            <tr>
+              <td>Bundler:</td>
+              <td>Vite JS</td>
+            </tr>
+            <tr>
+              <td>Art Style:</td>
+              <td>Stardew Pixel Art</td>
+            </tr>
+          </table>
+        </div>
+      </aside>
+    </main>
+
+    <footer class="app-footer">
+      <p>&copy; 2026 Stardew Valley Farm Animation. Phát triển bằng Phaser và Vite.</p>
+    </footer>
+  </div>
+
+</body>
+</html>
