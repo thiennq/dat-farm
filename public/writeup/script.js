@@ -186,6 +186,65 @@ async function loadFileContent(fileNode) {
         if (fileNode.name === 'chatlog.md') {
             makeSectionsCollapsible(viewer);
         }
+
+        // Count user questions and build timeline
+        const userHeaders = Array.from(viewer.querySelectorAll('h2')).filter(h2 => h2.innerText.includes('User'));
+        const timelineContainer = document.getElementById('timeline-container');
+        
+        if (userHeaders.length > 0) {
+            timelineContainer.style.display = 'block';
+            let navHtml = '<div class="timeline-nav">';
+            userHeaders.forEach((header, index) => {
+                const qId = `q${index + 1}`;
+                header.id = qId;
+                if (index > 0) {
+                    navHtml += `<span class="timeline-line" id="line-${qId}"></span>`;
+                }
+                navHtml += `<a href="#${qId}" class="timeline-step" id="step-${qId}" data-target="${qId}">${index + 1}</a>`;
+            });
+            navHtml += '</div>';
+            timelineContainer.innerHTML = navHtml;
+            
+            // Add click events for smooth scroll
+            timelineContainer.querySelectorAll('.timeline-step').forEach(step => {
+                step.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = step.getAttribute('data-target');
+                    const targetEl = document.getElementById(targetId);
+                    if (targetEl) {
+                        const viewerPane = document.getElementById('viewer-pane');
+                        const topOffset = targetEl.offsetTop - 120;
+                        viewerPane.scrollTo({
+                            top: topOffset,
+                            behavior: 'smooth'
+                        });
+                        history.replaceState(null, null, '#' + targetId);
+                        updateActiveStep(targetId);
+                    }
+                });
+            });
+            
+            setupScrollspy(userHeaders);
+            
+            // Auto scroll to hash on load/render if present
+            const hash = window.location.hash;
+            if (hash && hash.startsWith('#q')) {
+                setTimeout(() => {
+                    const targetEl = document.getElementById(hash.substring(1));
+                    if (targetEl) {
+                        const viewerPane = document.getElementById('viewer-pane');
+                        const topOffset = targetEl.offsetTop - 120;
+                        viewerPane.scrollTo({
+                            top: topOffset,
+                            behavior: 'smooth'
+                        });
+                    }
+                }, 300);
+            }
+        } else {
+            timelineContainer.style.display = 'none';
+            timelineContainer.innerHTML = '';
+        }
         
         // Apply syntax highlight
         viewer.querySelectorAll('pre code').forEach((block) => {
@@ -266,3 +325,72 @@ function makeSectionsCollapsible(viewer) {
         }
     });
 }
+
+let activeScrollspyListener = null;
+
+function setupScrollspy(questions) {
+    const viewerPane = document.getElementById('viewer-pane');
+    
+    // Remove any existing scroll listener to avoid duplicates
+    if (activeScrollspyListener) {
+        viewerPane.removeEventListener('scroll', activeScrollspyListener);
+    }
+    
+    activeScrollspyListener = () => {
+        const scrollPos = viewerPane.scrollTop + 150; // offset for detection
+        let currentQId = null;
+        
+        for (let i = 0; i < questions.length; i++) {
+            const header = questions[i];
+            if (scrollPos >= header.offsetTop) {
+                currentQId = header.id;
+            } else {
+                break;
+            }
+        }
+        
+        if (!currentQId && questions.length > 0) {
+            currentQId = questions[0].id;
+        }
+        
+        if (currentQId) {
+            updateActiveStep(currentQId);
+            
+            // Only update hash if it has changed to prevent infinite loops / lag
+            if (window.location.hash !== '#' + currentQId) {
+                history.replaceState(null, null, '#' + currentQId);
+            }
+        }
+    };
+    
+    viewerPane.addEventListener('scroll', activeScrollspyListener);
+    // Trigger once initially
+    activeScrollspyListener();
+}
+
+function updateActiveStep(activeId) {
+    const stepElements = document.querySelectorAll('.timeline-step');
+    const lineElements = document.querySelectorAll('.timeline-line');
+    
+    stepElements.forEach(step => {
+        const target = step.getAttribute('data-target');
+        if (target === activeId) {
+            step.classList.add('active');
+        } else {
+            step.classList.remove('active');
+        }
+    });
+    
+    // Highlight lines up to the active step
+    lineElements.forEach(line => {
+        const nextStepId = line.id.replace('line-', '');
+        const nextStepNum = parseInt(nextStepId.replace('q', ''));
+        const activeNum = parseInt(activeId.replace('q', ''));
+        if (nextStepNum <= activeNum) {
+            line.classList.add('active');
+        } else {
+            line.classList.remove('active');
+        }
+    });
+}
+
