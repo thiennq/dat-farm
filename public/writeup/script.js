@@ -192,7 +192,7 @@ async function loadFileContent(fileNode) {
         const timelineContainer = document.getElementById('timeline-container');
         
         if (userHeaders.length > 0) {
-            timelineContainer.style.display = 'block';
+            timelineContainer.style.display = 'flex';
             let navHtml = '<div class="timeline-nav">';
             userHeaders.forEach((header, index) => {
                 const qId = `q${index + 1}`;
@@ -213,7 +213,7 @@ async function loadFileContent(fileNode) {
                     const targetEl = document.getElementById(targetId);
                     if (targetEl) {
                         const viewerPane = document.getElementById('viewer-pane');
-                        const topOffset = targetEl.offsetTop - 120;
+                        const topOffset = targetEl.offsetTop - 24;
                         viewerPane.scrollTo({
                             top: topOffset,
                             behavior: 'smooth'
@@ -233,7 +233,7 @@ async function loadFileContent(fileNode) {
                     const targetEl = document.getElementById(hash.substring(1));
                     if (targetEl) {
                         const viewerPane = document.getElementById('viewer-pane');
-                        const topOffset = targetEl.offsetTop - 120;
+                        const topOffset = targetEl.offsetTop - 24;
                         viewerPane.scrollTo({
                             top: topOffset,
                             behavior: 'smooth'
@@ -337,7 +337,7 @@ function setupScrollspy(questions) {
     }
     
     activeScrollspyListener = () => {
-        const scrollPos = viewerPane.scrollTop + 150; // offset for detection
+        const scrollPos = viewerPane.scrollTop + 60; // offset for detection
         let currentQId = null;
         
         for (let i = 0; i < questions.length; i++) {
