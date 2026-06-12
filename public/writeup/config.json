@@ -18,11 +18,6 @@
       "path": "md/chatlog.md"
     },
     {
-      "name": "chatlog-remote.md",
-      "type": "file",
-      "path": "md/chatlog-remote.md"
-    },
-    {
       "name": "tasks",
       "type": "directory",
       "children": [
