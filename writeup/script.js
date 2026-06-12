@@ -131,7 +131,51 @@ async function loadFileContent(fileNode) {
             throw new Error(`Failed to load ${fileNode.name}`);
         }
         const text = await response.text();
-        viewer.innerHTML = marked.parse(text);
+        
+        // Parse Frontmatter
+        const frontmatterRegex = /^---\r?\n([\s\S]*?)\r?\n---\r?\n/;
+        const match = text.match(frontmatterRegex);
+        let htmlContent = "";
+        
+        if (match) {
+            const rawYaml = match[1];
+            const markdownBody = text.slice(match[0].length);
+            
+            // Parse simple key-values
+            const lines = rawYaml.split('\n');
+            const metadata = {};
+            lines.forEach(line => {
+                const idx = line.indexOf(':');
+                if (idx !== -1) {
+                    const key = line.slice(0, idx).trim();
+                    let value = line.slice(idx + 1).trim();
+                    // Strip quotes or brackets if present
+                    if (value.startsWith('"') && value.endsWith('"')) {
+                        value = value.slice(1, -1);
+                    } else if (value.startsWith("'") && value.endsWith("'")) {
+                        value = value.slice(1, -1);
+                    }
+                    metadata[key] = value;
+                }
+            });
+            
+            // Render frontmatter nicely
+            let metadataHtml = '<div class="metadata-card">';
+            for (const [key, val] of Object.entries(metadata)) {
+                metadataHtml += `
+                    <div class="metadata-row">
+                        <span class="metadata-key">${key}:</span>
+                        <span class="metadata-value">${val}</span>
+                    </div>`;
+            }
+            metadataHtml += '</div>';
+            
+            htmlContent = metadataHtml + marked.parse(markdownBody);
+        } else {
+            htmlContent = marked.parse(text);
+        }
+        
+        viewer.innerHTML = htmlContent;
         
         // Apply syntax highlight
         viewer.querySelectorAll('pre code').forEach((block) => {
