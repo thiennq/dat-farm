@@ -12,6 +12,7 @@
 - Call tool `view_file` File: `/Users/thiennq/.gemini/config/plugins/local.personal.ag-simple-task/skills/create-task/SKILL.md`
 - Call tool `list_dir` {DirectoryPath: `farm`}
 - Call tool `ask_question` : 
+
   Câu hỏi 1: Công nghệ/Framework nào bạn muốn sử dụng cho demo animation pixel này?
     A. (Recommended) Vite + Vanilla JS & HTML5 Canvas (nhẹ, dễ kiểm soát animation, không cần cài nhiều lib)
     B. Vite + Phaser JS (Game engine chuyên nghiệp cho game 2D)
