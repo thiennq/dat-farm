@@ -31,11 +31,6 @@
           "type": "directory",
           "children": [
             {
-              "name": "2026-06-12-generalize-writeup-dashboard.md",
-              "type": "file",
-              "path": "md/tasks/done/2026-06-12-generalize-writeup-dashboard.md"
-            },
-            {
               "name": "2026-06-12-01-setup-project-and-assets.md",
               "type": "file",
               "path": "md/tasks/done/2026-06-12-01-setup-project-and-assets.md"
