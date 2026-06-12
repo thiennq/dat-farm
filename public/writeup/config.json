@@ -18,6 +18,11 @@
       "path": "md/chatlog.md"
     },
     {
+      "name": "chatlog-v2.md",
+      "type": "file",
+      "path": "md/chatlog-v2.md"
+    },
+    {
       "name": "tasks",
       "type": "directory",
       "children": [
