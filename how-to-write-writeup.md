@@ -28,6 +28,7 @@ Tài liệu này tổng hợp toàn bộ kinh nghiệm, quy chuẩn thiết kế
     - `toolName`: `mainParameter`
     ```
 *   **Không escape ký tự**: Vì tham số đã đặt trong dấu backtick của JSON giả định `{query: `string`}` nên các dấu ngoặc kép bên trong chuỗi tuyệt đối không cần escape `\"` thành `"` nữa.
+*   **Ẩn cấu trúc thư mục cục bộ (Hiding folder structure)**: Tuyệt đối không để lộ cấu trúc thư mục tuyệt đối trên máy cá nhân của User (ví dụ: `/Users/thiennq/workspace/personal/farm/...`). Toàn bộ đường dẫn tuyệt đối trong file log phải được chuyển về đường dẫn tương đối hoặc thay thế bằng tên thư mục gốc của dự án: `farm/...`.
 *   **Gộp hành động**: Các khối hành động (`Action`), suy nghĩ (`Thinking`) hoặc phản hồi (`Response`) của AI xuất hiện liên tiếp trong cùng một lượt chat phải được gộp chung dưới một nhóm tiêu đề duy nhất.
 *   **Loại bỏ bước trùng lặp**: Lượt chat thực thi kế tiếp không được lặp lại các bước khảo sát/lập kế hoạch đã làm ở lượt trước (như trong trường hợp phân tách Q4 và Q5).
 

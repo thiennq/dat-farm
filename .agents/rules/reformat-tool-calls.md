@@ -6,6 +6,8 @@ Khi viết mới hoặc chỉnh sửa tệp nhật ký `chatlog.md` hoặc các 
 ## Quy tắc Chung (General Rules)
 1.  **Loại bỏ tiền tố**: Tuyệt đối không dùng tiền tố `Call tool ` trước tên công cụ. Chỉ viết tên công cụ trong dấu backtick: `- `tên_công_cụ``.
 2.  **Tránh escape dấu ngoặc kép**: Không escape ký tự `\"` bên trong dấu backtick. Sử dụng dấu ngoặc kép `"` thuần túy (ví dụ: `"Sprout Lands"` thay vì `\"Sprout Lands\"`).
+3.  **Ẩn cấu trúc thư mục cục bộ (Hiding folder structure)**: Tuyệt đối không để lộ đường dẫn tuyệt đối trên máy của User (ví dụ: `/Users/thiennq/workspace/personal/farm/...`). Mọi đường dẫn trong tệp log phải được rút gọn tương đối hoặc thay bằng tên thư mục gốc của dự án: `farm/...`.
+    *   *Ví dụ*: Sửa `- `view_file`: `/Users/thiennq/workspace/personal/farm/vite.config.js`` thành `- `view_file`: `farm/vite.config.js``.
 
 ---
 
