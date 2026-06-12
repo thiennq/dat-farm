@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Farm Project Writeup & Chatlogs</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Marked for Markdown Parsing -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <!-- Highlight.js for Code Syntax Highlighting -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+</head>
+<body>
+  <div class="app-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-logo">
+          <span>🌾 Dat Farm</span>
+        </div>
+        <div class="sidebar-subtitle">Project logs & tasks</div>
+      </div>
+      <nav class="sidebar-nav" id="file-tree">
+        <!-- Tree elements will be injected here by script.js -->
+      </nav>
+    </aside>
+
+    <!-- Main Content Panel -->
+    <main class="main-content">
+      <div class="top-bar">
+        <div class="current-path" id="active-path">Select a file from the tree</div>
+        <div class="badge" id="file-type-badge">Doc</div>
+      </div>
+      
+      <div class="viewer-pane">
+        <div class="loader" id="loader"></div>
+        <div class="markdown-body" id="doc-viewer">
+          <!-- Welcome Screen (Default) -->
+          <div class="welcome-screen">
+            <div class="welcome-icon">🌾</div>
+            <h1 class="welcome-title">Welcome to Dat Farm Logs</h1>
+            <p class="welcome-desc">Select a file from the sidebar tree to view chat logs and task backlog documentation.</p>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
