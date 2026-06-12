@@ -504,6 +504,7 @@ body {
 @media (max-width: 768px) {
     .menu-toggle {
         display: flex;
+        margin-left: 12px;
     }
 
     .sidebar {
@@ -523,7 +524,7 @@ body {
     }
 
     .top-bar {
-        padding: 0 16px;
+        padding: 0;
         height: 60px;
         justify-content: flex-start;
     }
@@ -635,7 +636,12 @@ body {
 
 @media (max-width: 768px) {
     .timeline-container {
-        padding: 0;
+        padding: 0 16px;
+        justify-content: flex-start;
+    }
+
+    .timeline-line {
+        width: 3px;
     }
     
     /* Hide path label when timeline is visible on mobile to fit all steps */
