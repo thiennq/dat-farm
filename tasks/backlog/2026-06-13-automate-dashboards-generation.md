@@ -3,7 +3,7 @@ title: "Tự động hóa Quy trình sinh Web App Dashboards"
 status: "backlog"
 priority: "high"
 created: "2026-06-13"
-depends_on: []
+depends_on: ["2026-06-13-research-dashboards-automation.md"]
 tags: ["automation", "dashboard", "writeup", "generator"]
 ---
 
@@ -11,13 +11,13 @@ tags: ["automation", "dashboard", "writeup", "generator"]
 
 ## Bối cảnh
 
-Hiện tại, cả hai giao diện xem nhật ký `/writeup` và `/dashboard` đang được xây dựng thủ công (HTML/CSS/JS tĩnh tự code và tự sao chép). Mỗi khi có thay đổi trong cấu trúc thư mục hoặc tính năng, nhà phát triển (hoặc AI Agent) phải viết và chỉnh sửa mã nguồn giao diện rất tốn thời gian và dễ phát sinh lỗi hoặc khớp sai dữ liệu. 
+Sau khi hoàn thành việc nghiên cứu giải pháp và được phê duyệt phương án (trong task `2026-06-13-research-dashboards-automation.md`), chúng ta cần tiến hành lập trình/cấu hình để tự động hóa việc sinh 2 trang `/writeup` và `/dashboard` của dự án. 
 
-Để tối ưu hóa, chúng ta cần biến 2 web app này thành một công cụ được tạo tự động 80-90% từ các thư viện mã nguồn mở có sẵn hoặc CLI generator, hạn chế tối đa sự can thiệp thủ công từ con người hoặc AI (chỉ chiếm tối đa 10% phần cấu hình/tùy biến giao diện).
+Để tối ưu hóa, 2 web app này sẽ được tạo tự động 80-90% từ các thư viện mã nguồn mở có sẵn hoặc CLI generator, hạn chế tối đa sự can thiệp thủ công từ con người hoặc AI (chỉ chiếm tối đa 10% phần cấu hình/tùy biến giao diện).
 
 ## Mục tiêu
 
-Nghiên cứu, thiết lập và viết tài liệu hướng dẫn chuyển đổi 2 trang `/writeup` và `/dashboard` thành các ứng dụng được sinh tự động thông qua câu lệnh CLI hoặc thư viện mã nguồn mở (ví dụ: VitePress, Docsify, Astro, v.v.), xuất bản kết quả (build output) trực tiếp vào thư mục `public/writeup` và `public/dashboard`.
+Thiết lập và viết tài liệu hướng dẫn chuyển đổi 2 trang `/writeup` và `/dashboard` thành các ứng dụng được sinh tự động thông qua câu lệnh CLI hoặc thư viện mã nguồn mở đã được phê duyệt, xuất bản kết quả (build output) trực tiếp vào thư mục `public/writeup` và `public/dashboard`.
 
 ## Yêu cầu
 
@@ -37,27 +37,18 @@ Nghiên cứu, thiết lập và viết tài liệu hướng dẫn chuyển đ�
 
 ## Thiết kế kỹ thuật
 
-### Giai đoạn 1: Nghiên cứu & So sánh (Research & Report)
-- So sánh các phương án khả thi:
-  1. **Phương án A**: Sử dụng **VitePress** (hoặc Docsify, Astro) để cấu hình và build trực tiếp.
-  2. **Phương án B**: Viết một **Custom CLI script** Node.js tối giản để sinh HTML tự động sử dụng `marked` và mẫu CSS có sẵn.
-- Trình bày ưu nhược điểm, độ phức tạp, và đề xuất lựa chọn tốt nhất gửi User duyệt.
-
-### Giai đoạn 2: Triển khai & Tự động hóa
-- Sau khi được User chọn phương án, tiến hành cài đặt thư viện/viết script và cấu hình tệp cấu hình cần thiết.
+- Tiến hành cài đặt thư viện/viết script và cấu hình tệp cấu hình cần thiết dựa trên kết quả phê duyệt nghiên cứu.
 - Tạo các script npm tương ứng trong `package.json` để chạy quy trình build tự động.
 
 ### Files cần tạo/sửa
 | File | Action |
 |------|--------|
-| `tasks/backlog/2026-06-13-automate-dashboards-generation.md` | MỚI |
+| `tasks/backlog/2026-06-13-automate-dashboards-generation.md` | SỬA |
 | `package.json` | SỬA |
 
 ## Checklist
 
-- [ ] Thực hiện nghiên cứu và viết báo cáo so sánh các phương án (VitePress/Docsify vs Custom Script)
-- [ ] Gửi báo cáo cho User và nhận phê duyệt phương án triển khai
-- [ ] Khởi tạo cấu hình/script cho phương án được chọn
+- [ ] Khởi tạo cấu hình/script cho phương án tự động hóa đã được phê duyệt
 - [ ] Thiết lập build output xuất vào `public/writeup` và `public/dashboard`
 - [ ] Thêm npm script (hoặc lệnh npx) vào `package.json` để chạy thủ công dễ dàng
 - [ ] Chạy thử nghiệm và xác minh nội dung hiển thị chuẩn xác (markdown, walkthrough, chatlog)
@@ -66,4 +57,4 @@ Nghiên cứu, thiết lập và viết tài liệu hướng dẫn chuyển đ�
 
 ## Notes & Open Questions
 
-- Cần khảo sát kỹ độ tương thích đường dẫn tương đối (`./`) trên GitHub Pages của thư viện được chọn (ví dụ VitePress cần cấu hình `base`).
+- Cần khảo sát kỹ độ tương thích đường dẫn tương đối (`./`) trên GitHub Pages của thư viện được chọn.
