@@ -123,13 +123,11 @@ async function loadFileContent(fileNode) {
     const viewer = document.getElementById('doc-viewer');
     const loader = document.getElementById('loader');
     const pathLabel = document.getElementById('active-path');
-    const badge = document.getElementById('file-type-badge');
 
     // Show loading indicator
     viewer.style.display = 'none';
     loader.style.display = 'block';
     pathLabel.innerText = fileNode.path;
-    badge.innerText = fileNode.name.endsWith('.md') ? 'MARKDOWN' : 'FILE';
 
     try {
         const response = await fetch(fileNode.path);
