@@ -123,6 +123,16 @@ async function loadFileContent(fileNode) {
     const viewer = document.getElementById('doc-viewer');
     const loader = document.getElementById('loader');
     const pathLabel = document.getElementById('active-path');
+    const viewerPane = document.getElementById('viewer-pane');
+
+    if (viewerPane) {
+        viewerPane.scrollTop = 0;
+    }
+
+    // Clear URL hash to prevent automatic scrolling
+    if (window.location.hash) {
+        history.replaceState(null, null, ' ');
+    }
 
     // Show loading indicator
     viewer.style.display = 'none';
@@ -222,26 +232,18 @@ async function loadFileContent(fileNode) {
                 });
             });
             
-            setupScrollspy(userHeaders);
+            // Hide loader and show viewer so offsetTop values are computed correctly
+            loader.style.display = 'none';
+            viewer.style.display = 'block';
             
-            // Auto scroll to hash on load/render if present
-            const hash = window.location.hash;
-            if (hash && hash.startsWith('#q')) {
-                setTimeout(() => {
-                    const targetEl = document.getElementById(hash.substring(1));
-                    if (targetEl) {
-                        const viewerPane = document.getElementById('viewer-pane');
-                        const topOffset = targetEl.offsetTop - 24;
-                        viewerPane.scrollTo({
-                            top: topOffset,
-                            behavior: 'smooth'
-                        });
-                    }
-                }, 300);
-            }
+            setupScrollspy(userHeaders);
         } else {
             timelineContainer.style.display = 'none';
             timelineContainer.innerHTML = '';
+            
+            // Hide loader and show viewer
+            loader.style.display = 'none';
+            viewer.style.display = 'block';
         }
         
         // Apply syntax highlight
@@ -256,7 +258,6 @@ async function loadFileContent(fileNode) {
                 <p>${error.message}</p>
             </div>
         `;
-    } finally {
         loader.style.display = 'none';
         viewer.style.display = 'block';
     }
@@ -335,9 +336,19 @@ function setupScrollspy(questions) {
     }
     
     activeScrollspyListener = () => {
-        const scrollPos = viewerPane.scrollTop + 60; // offset for detection
+        const scrollTop = viewerPane.scrollTop;
         let currentQId = null;
         
+        if (scrollTop < 15) {
+            currentQId = 'q1';
+            updateActiveStep(currentQId);
+            if (window.location.hash !== '') {
+                history.replaceState(null, null, ' ');
+            }
+            return;
+        }
+        
+        const scrollPos = scrollTop + 60; // offset for detection
         for (let i = 0; i < questions.length; i++) {
             const header = questions[i];
             if (scrollPos >= header.offsetTop) {
