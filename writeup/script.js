@@ -177,6 +177,10 @@ async function loadFileContent(fileNode) {
         
         viewer.innerHTML = htmlContent;
         
+        if (fileNode.name === 'chatlog.md') {
+            makeSectionsCollapsible(viewer);
+        }
+        
         // Apply syntax highlight
         viewer.querySelectorAll('pre code').forEach((block) => {
             hljs.highlightElement(block);
@@ -200,3 +204,38 @@ document.addEventListener('DOMContentLoaded', () => {
     const treeContainer = document.getElementById('file-tree');
     createTreeDOM(fileTreeData, treeContainer);
 });
+
+// Helper to group everything under ## Antigravity into collapsible containers
+function makeSectionsCollapsible(viewer) {
+    const children = Array.from(viewer.children);
+    let currentContainer = null;
+    
+    children.forEach(child => {
+        if (child.tagName === 'H2' && child.innerText.includes('Antigravity')) {
+            // Style the header as collapsible
+            child.classList.add('collapsible-header');
+            child.innerHTML = `<span class="collapse-toggle-icon">▾</span> ` + child.innerHTML;
+            
+            // Create container for section contents
+            currentContainer = document.createElement('div');
+            currentContainer.className = 'collapsible-section open';
+            
+            // Insert container after H2
+            child.parentNode.insertBefore(currentContainer, child.nextSibling);
+            
+            // Click to toggle collapse
+            child.addEventListener('click', () => {
+                const isOpen = currentContainer.classList.toggle('open');
+                child.querySelector('.collapse-toggle-icon').innerText = isOpen ? '▾' : '▸';
+                child.classList.toggle('collapsed', !isOpen);
+            });
+        } else if (currentContainer && child.className !== 'collapsible-section') {
+            // Append following elements into container until another H2 is found
+            currentContainer.appendChild(child);
+        } else if (child.tagName === 'H2') {
+            // Stop grouping when another H2 (e.g. User) starts
+            currentContainer = null;
+        }
+    });
+}
+
